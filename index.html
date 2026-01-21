@@ -2,92 +2,219 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MASTER GLASS | Ош</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MASTER GLASS | Душевые и перегородки в Оше</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
     <style>
-        body { background-color: #0d1117; color: #e6edf3; font-family: 'Segoe UI', Roboto, sans-serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden; margin-bottom: 24px; }
-        .btn-blue { background-color: #0070f3; color: white; padding: 14px; border-radius: 12px; width: 100%; font-weight: 600; text-align: center; display: block; transition: 0.3s; }
-        .btn-whatsapp { background-color: #25d366; color: white; padding: 16px; border-radius: 12px; width: 100%; font-weight: bold; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; }
-        .nav-chip { border: 1px solid #30363d; padding: 8px 18px; border-radius: 20px; font-size: 13px; white-space: nowrap; background: #161b22; }
-        .logo-circle { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #0070f3; padding: 2px; margin: 0 auto 15px; }
+        :root {
+            --accent: #0088ff; /* Глубокий синий (цвет стекла/воды) */
+            --bg: #0b0b0b;
+            --card-bg: #161616;
+            --text: #ffffff;
+            --gray: #888;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), #000), 
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-logo-box {
+            width: 140px; height: 140px;
+            border: 2px solid var(--accent);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.05);
+            transform: rotate(45deg);
+        }
+        .hero-logo-box span { 
+            transform: rotate(-45deg); 
+            font-size: 20px; font-weight: 900; text-align: center; line-height: 1.1; 
+        }
+
+        .hero h1 { font-size: 32px; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; text-align: center; }
+        .hero p { font-size: 11px; color: var(--accent); letter-spacing: 4px; margin-top: 15px; text-transform: uppercase; }
+
+        .scroll-hint {
+            position: absolute; bottom: 30px; text-align: center; opacity: 0.5;
+            animation: bounce 2s infinite; font-size: 10px; letter-spacing: 2px;
+        }
+        @keyframes bounce { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
+
+        /* NAVIGATION */
+        .nav-bar {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(11, 11, 11, 0.95); backdrop-filter: blur(20px);
+            padding: 15px 0; border-bottom: 1px solid #222;
+        }
+        .nav-items { display: flex; gap: 10px; overflow-x: auto; padding: 0 15px; scrollbar-width: none; }
+        .nav-link {
+            background: #222; color: #fff; padding: 10px 22px; border-radius: 4px;
+            text-decoration: none; font-size: 11px; white-space: nowrap; border: 1px solid #333;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        /* CATALOG */
+        .container { padding: 40px 15px 100px; max-width: 1200px; margin: auto; }
+        
+        section { padding-top: 40px; margin-bottom: 60px; }
+        .section-label { font-size: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; display: block; }
+        .section-title { font-size: 26px; font-weight: 900; margin-bottom: 30px; text-transform: uppercase; }
+
+        .catalog-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
+
+        .product-card {
+            background: var(--card-bg); border-radius: 12px; overflow: hidden;
+            border: 1px solid #222; transition: 0.3s;
+        }
+        .img-box { width: 100%; height: 400px; background-size: cover; background-position: center; }
+
+        .info-box { padding: 25px; }
+        .p-name { color: #fff; font-size: 18px; font-weight: 700; margin-bottom: 10px; display: block; }
+        .p-desc { color: var(--gray); font-size: 13px; line-height: 1.6; margin-bottom: 20px; }
+
+        .btn-order {
+            display: block; width: 100%; border: 1px solid var(--accent); color: #fff;
+            text-align: center; padding: 16px; border-radius: 4px;
+            text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 11px;
+            letter-spacing: 2px; transition: 0.3s;
+        }
+        .btn-order:hover { background: var(--accent); }
+
+        /* CONTACTS */
+        .footer-box { padding: 60px 20px 120px; text-align: center; background: #080808; border-top: 1px solid #111; }
+        .footer-box h2 { font-weight: 900; font-size: 22px; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; color: var(--gray); line-height: 2; }
+
+        .wa-fixed {
+            position: fixed; bottom: 20px; left: 20px; right: 20px;
+            background: #25D366; color: #fff; padding: 18px; border-radius: 8px;
+            text-align: center; text-decoration: none; font-weight: 900; z-index: 2000;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-transform: uppercase; font-size: 12px; letter-spacing: 1px;
+        }
+
+        footer { padding: 40px; text-align: center; opacity: 0.3; font-size: 9px; letter-spacing: 2px; }
     </style>
 </head>
-<body class="p-4">
+<body>
 
-    <div class="text-center mt-6 mb-8">
-        <div class="logo-circle">
-            <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center font-bold text-2xl text-blue-500">M</div>
+    <section class="hero">
+        <div class="hero-logo-box" data-aos="zoom-in">
+            <span>MASTER<br>GLASS</span>
         </div>
-        <h1 class="text-2xl font-bold tracking-tight">MASTER GLASS | Ош</h1>
-        <p class="text-gray-400 text-sm mt-2 px-6">Стекло, которое меняет пространство ✨</p>
-    </div>
+        <h1 data-aos="fade-up">СТЕКЛО В ИНТЕРЬЕРЕ</h1>
+        <p data-aos="fade-up" data-aos-delay="200">ОШ • ИЗГОТОВЛЕНИЕ • УСТАНОВКА</p>
+        <div class="scroll-hint">ЛИСТАЙТЕ ВНИЗ<br><i class="fas fa-chevron-down"></i></div>
+    </section>
 
-    <div class="flex gap-2 overflow-x-auto mb-8 no-scrollbar pb-2">
-        <div class="nav-chip">Услуги</div>
-        <div class="nav-chip">Душевые</div>
-        <div class="nav-chip">Перегородки</div>
-        <div class="nav-chip">Зеркала</div>
-        <div class="nav-chip">Отзывы</div>
-    </div>
-
-    <div class="glass-card">
-        <img src="https://images.unsplash.com/photo-1620626011761-9963d7521476?q=80&w=500" alt="Душевые кабины" class="w-full h-72 object-cover">
-        <div class="p-5">
-            <h3 class="text-lg font-semibold mb-1">Душевые кабины</h3>
-            <p class="text-gray-500 text-sm mb-4">Индивидуальный заказ под ваши размеры</p>
-            <a href="https://wa.me/996508220530" class="btn-blue uppercase text-xs tracking-widest">Узнать цену</a>
+    <div class="nav-bar">
+        <div class="nav-items">
+            <a href="#showers" class="nav-link">Душевые</a>
+            <a href="#partitions" class="nav-link">Перегородки</a>
+            <a href="#doors" class="nav-link">Двери</a>
+            <a href="#mirrors" class="nav-link">Зеркала</a>
+            <a href="#process" class="nav-link">Процесс</a>
         </div>
     </div>
 
-    <div class="glass-card">
-        <img src="https://images.unsplash.com/photo-1600607687940-497f1f626811?q=80&w=500" alt="Перегородки" class="w-full h-72 object-cover">
-        <div class="p-5">
-            <h3 class="text-lg font-semibold mb-1">Перегородки</h3>
-            <p class="text-gray-500 text-sm mb-4">Для зонирования офисов и жилых комнат</p>
-            <a href="https://wa.me/996508220530" class="btn-blue uppercase text-xs tracking-widest">Консультация</a>
-        </div>
+    <div class="container">
+        <section id="showers" data-aos="fade-up">
+            <span class="section-label">Section 01</span>
+            <h2 class="section-title">Душевые кабины</h2>
+            <div class="catalog-grid">
+                <div class="product-card">
+                    <div class="img-box" style="background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800');"></div>
+                    <div class="info-box">
+                        <span class="p-name">Закаленное стекло 8-10мм</span>
+                        <p class="p-desc">Индивидуальные размеры, надежная фурнитура из нержавеющей стали. Герметичность и стиль.</p>
+                        <a href="https://wa.me/996508220530?text=Здравствуйте!%20Меня%20интересует%20расчет%20душевой%20кабины" class="btn-order">Узнать стоимость</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="partitions" data-aos="fade-up">
+            <span class="section-label">Section 02</span>
+            <h2 class="section-title">Перегородки</h2>
+            <div class="catalog-grid">
+                <div class="product-card">
+                    <div class="img-box" style="background-image: url('https://images.unsplash.com/photo-1628592102751-ba83b0314276?w=800');"></div>
+                    <div class="info-box">
+                        <span class="p-name">Лофт-перегородки</span>
+                        <p class="p-desc">Зонирование пространства без потери света. Алюминиевый профиль и безопасное стекло.</p>
+                        <a href="https://wa.me/996508220530?text=Хочу%20проконсультироваться%20по%20перегородкам" class="btn-order">Консультация</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="doors" data-aos="fade-up">
+            <span class="section-label">Section 03</span>
+            <h2 class="section-title">Стеклянные двери</h2>
+            <div class="catalog-grid">
+                <div class="product-card">
+                    <div class="img-box" style="background-image: url('https://images.unsplash.com/photo-1534073828943-f801091bb18c?w=800');"></div>
+                    <div class="info-box">
+                        <span class="p-name">Раздвижные системы</span>
+                        <p class="p-desc">Матовое или прозрачное стекло. Плавный ход и современный дизайн для вашего дома.</p>
+                        <a href="https://wa.me/996508220530" class="btn-order">Заказать замер</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mirrors" data-aos="fade-up">
+            <span class="section-label">Section 04</span>
+            <h2 class="section-title">Зеркала с подсветкой</h2>
+            <div class="catalog-grid">
+                <div class="product-card">
+                    <div class="img-box" style="background-image: url('https://images.unsplash.com/photo-1618220179428-22790b461013?w=800');"></div>
+                    <div class="info-box">
+                        <span class="p-name">LED Зеркала</span>
+                        <p class="p-desc">Любые формы и размеры. Сенсорное управление и антизапотевание.</p>
+                        <a href="https://wa.me/996508220530" class="btn-order">Выбрать дизайн</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div class="glass-card">
-        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=500" alt="Зеркала" class="w-full h-72 object-cover">
-        <div class="p-5">
-            <h3 class="text-lg font-semibold mb-1">Зеркала</h3>
-            <p class="text-gray-500 text-sm mb-4">С LED подсветкой и любой формы</p>
-            <a href="https://wa.me/996508220530" class="btn-blue uppercase text-xs tracking-widest">Выбрать дизайн</a>
-        </div>
+    <div id="process" class="footer-box">
+        <span class="section-label">Как мы работаем</span>
+        <h2>МАСТЕР ГЛАСС ОШ</h2>
+        <p>
+            Замер • Изготовление • Доставка • Установка<br>
+            Работаем по городу Ош и области<br>
+            <strong>Телефон/WhatsApp: 0508 220 530</strong>
+        </p>
     </div>
 
-    <div class="glass-card">
-        <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=500" alt="Двери" class="w-full h-72 object-cover">
-        <div class="p-5">
-            <h3 class="text-lg font-semibold mb-1">Стеклянные двери</h3>
-            <p class="text-gray-500 text-sm mb-4">Матовые, прозрачные, каленое стекло</p>
-            <a href="https://wa.me/996508220530" class="btn-blue uppercase text-xs tracking-widest">Заказать замер</a>
-        </div>
-    </div>
+    <footer>BRAUZMERK PRODUCTION</footer>
 
-    <div class="glass-card">
-        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=500" alt="Ограждения" class="w-full h-72 object-cover">
-        <div class="p-5">
-            <h3 class="text-lg font-semibold mb-1">Ограждения</h3>
-            <p class="text-gray-500 text-sm mb-4">Перила для лестниц и террас</p>
-            <a href="https://wa.me/996508220530" class="btn-blue uppercase text-xs tracking-widest">Подробнее</a>
-        </div>
-    </div>
+    <a href="https://wa.me/996508220530" class="wa-fixed">
+        <i class="fab fa-whatsapp"></i> БЕСПЛАТНЫЙ ЗАМЕР
+    </a>
 
-    <div class="mt-10 mb-10 p-6 bg-[#161b22] rounded-3xl border border-gray-800 text-center">
-        <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Связаться с нами</p>
-        <h2 class="text-xl font-bold mb-2">Г. ОШ, КЫРГЫЗСТАН</h2>
-        <p class="text-sm text-gray-400 mb-6 italic">Замер • Изготовление • Установка</p>
-        
-        <a href="https://wa.me/996508220530" class="btn-whatsapp">
-            <svg style="width:24px; height:24px" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.224-3.52c1.54.914 3.51 1.403 5.56 1.404 5.732 0 10.391-4.659 10.394-10.391 0-2.777-1.082-5.388-3.048-7.354-1.967-1.967-4.578-3.048-7.353-3.049-5.731 0-10.391 4.659-10.394 10.39 0 2.108.544 4.165 1.574 5.922l-1.018 3.72 3.831-.997z"/></svg>
-            НАПИСАТЬ В WHATSAPP
-        </a>
-        <p class="mt-4 text-blue-500 font-bold">508 220 530</p>
-    </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
 </body>
 </html>
+
